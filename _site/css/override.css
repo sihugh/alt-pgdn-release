@@ -1,0 +1,44 @@
+.nav-svg img{
+	width: 100px;
+	height: 100px;
+}
+
+.site-header, .footnote{
+	background: #333;
+	color: #aaa;
+}
+
+a:hover{
+	color: #666;
+}
+
+.body{
+	color: #333;
+}
+
+.build-status{
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+.post-list, .social-media-list, .pages-list, .contact-list, .feed-list {
+	margin-left: 0;
+	list-style: none;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.page-heading{
+	padding-top: 10px;
+	font-size: 2.75rem;
+	text-align: center;
+}
+
+.icon > svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+ }    

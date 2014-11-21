@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.alt-pgdn.com/</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/about/</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/cheat-sheet/</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/tools/</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/2013/08/07/sql-server-aliases.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+<url>
+  <loc>http://www.alt-pgdn.com/.net/2013/01/06/bad-uri.trycreate.html</loc>
+  <lastmod>2014-11-10T16:53:13+00:00</lastmod>
+</url>
+</urlset>

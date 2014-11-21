@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Alt-PgDn</title>
+    <description>Alt-PgDn is the Resharper keyboard shortcut for &quot;Proceed to next issue&quot;. This is a collection of programming tidbits, deployment issues and other techy bits and pieces I find interesting.
+</description>
+    <link>http://www.alt-pgdn.com/</link>
+    <atom:link href="http://www.alt-pgdn.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 21 Nov 2014 15:38:36 +0000</pubDate>
+    <lastBuildDate>Fri, 21 Nov 2014 15:38:36 +0000</lastBuildDate>
+    <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Enabling Travis-CI build on Github-Pages site</title>
+        <description>&lt;p&gt;Sign up for &lt;a href=&quot;https://travis-ci.org&quot;&gt;Travis-CI&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go to https://travis-ci.org/profile/#yourname# and turn CI on for your repo.&lt;/p&gt;
+
+&lt;p&gt;Return to your Github pages repo and add a Gemfile including gihub-pages and html-proofer:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/54b62bb34dfba66cac23.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Add a .travis.yml file to build your Jekyll site and run htmlproofer against the generated content:&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/78705cfd742e684bc113.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;Edit your readme.md to include the build status image:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;![build status](https://travis-ci.org/sihugh/sihugh.github.io.svg)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Commit and push&lt;/p&gt;
+
+&lt;p&gt;… Wait for the build failure email telling you about the broken links on your sites… :-D&lt;/p&gt;
+</description>
+        <pubDate>Tue, 28 Oct 2014 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</guid>
+        
+        
+        <category>build</category>
+        
+      </item>
+    
+      <item>
+        <title>Removing the Server header from Azure websites</title>
+        <description>&lt;p&gt;To remove the Server header from Azure websites add the following section to system.webServer in the web.config
+Local IIS will complain!&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;security&amp;gt;
+  &amp;lt;requestFiltering removeServerHeader =&quot;true&quot; /&amp;gt;
+&amp;lt;/security&amp;gt;`
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.troyhunt.com/2012/02/shhh-dont-let-your-response-headers.html&quot;&gt;Response headers via @troyhunt&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</guid>
+        
+        
+        <category>azure</category>
+        
+      </item>
+    
+      <item>
+        <title>Fixing IIS hangs caused by Ants Performance Profiler</title>
+        <description>&lt;p&gt;One of our test boxes was suffering from IIS hangs after an application pool recycle - generally after either deploying an WSP or modifying a web.config.
+The hang was accompanied by an error message in the Application event log: “Failed to CoCreate profiler”.&lt;/p&gt;
+
+&lt;p&gt;The server had Ants Performance Profiler on it and I’d noticed the same error on my Dev box after using the same software, so suspected a culprit.&lt;/p&gt;
+
+&lt;p&gt;The Redgate articles I found suggested initially checking the permissions on the installation directories to ensure that the app pool accounts have read permissions.  This did not help our problem.&lt;/p&gt;
+
+&lt;p&gt;The second one suggested deleting the Environment value under the HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC key.  (This contradicts the MSDN article below, but after backing up the key I tried it anyway.)&lt;/p&gt;
+
+&lt;p&gt;I expect that in some circumstances this Environment value can contain more items than just those of a troublesome app, so should be done with care.  Anyway, it fixed our issue, so all’s good!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blogs.msdn.com/b/dougste/archive/2009/12/30/failed-to-cocreate-profiler.aspx&quot; title=&quot;Failed to CoCreate Profiler - MSDN&quot;&gt;http://blogs.msdn.com/b/dougste/archive/2009/12/30/failed-to-cocreate-profiler.aspx&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://documentation.red-gate.com/display/APP8/IIS+stops+working+after+profiling+web+applications&quot; title=&quot;IIS stops working after profiling web applications - redgate&quot;&gt;http://documentation.red-gate.com/display/APP8/IIS+stops+working+after+profiling+web+applications&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</guid>
+        
+        
+        <category>iis</category>
+        
+      </item>
+    
+      <item>
+        <title>Zipping files in MSBuild using Community Tasks</title>
+        <description>&lt;p&gt;We use this for packaging up PDB files for each release.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;  &amp;lt;UsingTask AssemblyName=&quot;MSBuild.Community.Tasks&quot; TaskName=&quot;MSBuild.Community.Tasks.Zip&quot; /&amp;gt;
+  &amp;lt;Target Name=&quot;ZipPDBs&quot;&amp;gt;
+    &amp;lt;Message Text=&quot;Zipping PDB files in $(BasePath)&quot; /&amp;gt;
+    &amp;lt;CreateItem Include=&quot;$(BasePath)\*.pdb&quot; &amp;gt;
+        &amp;lt;Output ItemName=&quot;PDBFiles&quot; TaskParameters=&quot;Include&quot; /&amp;gt;
+    &amp;lt;/CreateItem&amp;gt;
+    &amp;lt;MSBuildCommunity.Tasks.Zip ZipFileName=&quot;$(BasePath)\pdbs-$(VersionNumber).zip&quot; WorkingDirectory=&quot;$(BasePath)&quot; Files=&quot;@PDBFiles&quot; /&amp;gt;
+  &amp;lt;/Target&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;$(BasePath) and $(VersionNumber) need to be defined elsewhere.&lt;/p&gt;
+
+&lt;p&gt;MSBuild.Community.Tasks.dll needs to be accessible.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</guid>
+        
+        
+        <category>build</category>
+        
+      </item>
+    
+      <item>
+        <title>Configuring Windows to enable Octopress builds</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Chocolatey from &lt;a href=&quot;https://chocolatey.org/&quot;&gt;https://chocolatey.org/&lt;/a&gt; (Not strictly necessary, but it is a handy tool)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Git &lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;
+    cinst git
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Ruby 1.9.3 from &lt;a href=&quot;http://rubyinstaller.org/downloads/&quot; title=&quot;Ruby Installer&quot;&gt;http://rubyinstaller.org/downloads/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install Ruby Devkit &lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;
+cinst ruby.devkit
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Clone Octopress locally (“git clone https://github.com/imathis/octopress ./octopress” from command line)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To ensure that all the Gem dependencies are correctly installed:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;```
+    cd octopress&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install bundler
+
+bundle install ```
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Put content in the source/_posts folder&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;To build the site:&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;
+    rake generate
+&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 05 Jan 2014 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</guid>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Setting Assembly File Version using MSBuild Extensions</title>
+        <description>&lt;p&gt;Excellent write up on this - used it and it worked:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/&quot;&gt;http://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;MSBuild Extensions: &lt;a href=&quot;http://msbuildextensionpack.codeplex.com/releases/view/105659&quot;&gt;http://msbuildextensionpack.codeplex.com/releases/view/105659&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</guid>
+        
+        
+        <category>build</category>
+        
+      </item>
+    
+      <item>
+        <title>SQL Server Aliases</title>
+        <description>&lt;p&gt;Use cliconfg.exe to set up a SQL server alias as per:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blogs.technet.com/b/meamcs/archive/2013/01/22/creating-a-sql-server-alias-using-the-sql-server-client-network-utility.aspx&quot;&gt;http://blogs.technet.com/b/meamcs/archive/2013/01/22/creating-a-sql-server-alias-using-the-sql-server-client-network-utility.aspx&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 07 Aug 2013 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/2013/08/07/sql-server-aliases.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/2013/08/07/sql-server-aliases.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Don&#39;t Use OOB SharePoint Themes</title>
+        <description>&lt;p&gt;MOSS 2007 ships a number of default themes. There are a number of issues with these regarding enabling caching for CSS and images used in the themes, supporting the modification of these artefacts without requiring the theme to be updated, but also around the validity of the CSS itself.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;p&gt;I will cover the caching and updating points in another post (although the key elements behind this are covered in &lt;a href=&quot;http://www.heathersolomon.com/blog/archive/2008/01/30/SharePoint-2007-Design-Tip-Import-your-CSS-for-SharePoint-Themes.aspx&quot; title=&quot;Heather Solomon&#39;s post&quot;&gt;Heather Solomon’s post&lt;/a&gt;. This post flags up the issue of broken CSS one of the side effects of which is extra HTTP requests which will never be served.&lt;/p&gt;
+
+&lt;p&gt;I’m going to cut to the chase and advise that you do not permit the out of the box themes to be used. (Not that anyone is still deploying new 2007 installations are they?) I’m going to pick on a few specific problems, but they are indicative of MOSS themes as a whole.&lt;/p&gt;
+
+&lt;h3 id=&quot;not-cacheable&quot;&gt;Not Cacheable&lt;/h3&gt;
+
+&lt;p&gt;Check out Fiddler when you make a request to a theme enabled site. Every request brings down a raft of images associated with the theme. Why no browser caching?
+The theme files (theme.css, mossextension.css and all the associated images) are served with a Cache-Control header set to “private,max-age=0”. This means that every time you request those resources your browser will head all the way back to the server to check whether they’ve been updated.&lt;/p&gt;
+
+&lt;h3 id=&quot;stored-in-the-content-database&quot;&gt;Stored In The Content Database&lt;/h3&gt;
+
+&lt;p&gt;When you apply a theme to a SharePoint site, it grabs all the styles and images in the folder that defines the theme and stores them in the site (i.e. in the content database) under the “_themes” folder.&lt;/p&gt;
+
+&lt;p&gt;This has the side effect of making it difficult to make any changes to themes which have been applied, but also means that there is a lot of database access just to serve out a set of static image and css files.&lt;/p&gt;
+
+&lt;h3 id=&quot;broken-links---bad-css-and-missing-images&quot;&gt;Broken Links - Bad CSS and Missing Images&lt;/h3&gt;
+
+&lt;p&gt;The Simple theme contains two references to ‘http://localhost/topnavselected_simple.gif’. This will never be resolved which results in 404 errors when requesting pages with that theme applied.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/4121350.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;The Verdant theme has links to the ‘siteTitleBKGD_vintage.jpg’ image. Sadly, there’s a gif, but no jpg by that name in this theme.&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/4121601.js&quot;&gt; &lt;/script&gt;
+
+&lt;p&gt;There are further problems than this, but if you’ve got performance issues on your MOSS farm and you have themes enabled, consider what impact they have.&lt;/p&gt;
+
+&lt;p&gt;I’ve looked at the theme definitions on 2010 and they seem similarly afflicted.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Next post: How to fix your themes!&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</guid>
+        
+        
+        <category>sharepoint</category>
+        
+      </item>
+    
+      <item>
+        <title>SharePoint Peoplepicker Angst</title>
+        <description>&lt;p&gt;I’ve recently been trying to run down some issues around service accounts gaining access to site collections in one of our web apps.  We’ve set the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263328%28v=office.12%29.aspx&quot;&gt;siteuseraccountdirectorypath&lt;/a&gt; and that is working as expected and users under that OU are resolved correctly.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, some (but not all) of the service accounts that reside in the OUs specified in the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;peoplepicker-serviceaccountdirectorypaths&lt;/a&gt; property were getting the ‘The user does not exist or is not unique’ error when trying to access the site and could not resolve via the people picker in the site.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;tldr--what-fixed-the-problem&quot;&gt;TL;DR – What fixed the problem?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Make sure the service account directory paths property is correct&lt;/li&gt;
+  &lt;li&gt;Make sure the service account is a farm administrator.
+    &lt;ul&gt;
+      &lt;li&gt;Make sure there are no ‘Deny’ policies in the Policy for Web Application page interfering with this account.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;If the user still does not resolve in the people picker on the site, remove it from any web app policies it is defined in and re-add it.&lt;/strong&gt; (This was our issue)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Get the service account to try to access the site again.
+    &lt;ul&gt;
+      &lt;li&gt;Ours was a search indexing service account so we restarted the crawler.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The user should now be able to get access (and should now resolve in the people picker).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;investigation&quot;&gt;Investigation&lt;/h2&gt;
+&lt;p&gt;The problem was that the service account did not have access, but as we could not log in as the account to try things, we were trying to fix the “would not resolve in people picker” issue first to see if it was the same issue.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;a href=&quot;http://www.microsoft.com/en-us/download/details.aspx?id=4865&quot;&gt;NetMon&lt;/a&gt; I could see that People picker only does an LDAP query under the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263328%28v=office.12%29.aspx&quot;&gt;siteuseraccountdirectorypath&lt;/a&gt; base OU.  This means that the issue was not to do with the connection to AD from the site collection as it was never actually querying AD at a location where service accounts were.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;Technet reference&lt;/a&gt; does indicate that SharePoint has to know about the account already (emphasis mine):&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Enables a &lt;strong&gt;farm administrator&lt;/strong&gt; to manage the site collection that has a specific organizational unit (OU) setting as defined in the Setsiteuseraccountdirectorypath setting&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The service accounts that appeared in the people picker selector were present in the User Information List in the root web of the site collection.&lt;/p&gt;
+
+&lt;p&gt;I set up a test user with no access to the site and even though he got the Access Denied page when browsing to the site, the user account was added to the User Information List at first browse.  This implied that it was something different than just lack of permissions.
+Eventually we determined that the accounts that were not being resolved were all in an OU which had recently been added to the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;peoplepicker-serviceaccountdirectorypaths&lt;/a&gt; property.  They had been in the web application policies list since the web app had been set up, but this had obviously not been working.&lt;/p&gt;
+
+&lt;p&gt;Removing and adding the service account in the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc262617%28v=office.12%29.aspx&quot;&gt;Policy for Web Application page&lt;/a&gt; seemed like a bit of a clutching at straws tactic, but after I’d restarted the crawl service everything sprang into life.&lt;/p&gt;
+</description>
+        <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</guid>
+        
+        
+        <category>sharepoint</category>
+        
+      </item>
+    
+      <item>
+        <title>Uri.TryCreate Is Not Reliable on .NET 3.5</title>
+        <description>&lt;p&gt;I ran into this issue while running through a load of SharePoint pages extracting URLs for a migration project:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2814951/system-uriformatexception-invalid-uri-the-hostname-could-not-be-parsed&quot;&gt;http://stackoverflow.com/questions/2814951/system-uriformatexception-invalid-uri-the-hostname-could-not-be-parsed&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Essentially, you cannot just use Uri.TryCreate to 100% determine whether a supplied string is a valid Uri.&lt;/p&gt;
+
+&lt;p&gt;In my case, I was able to do some simple pre-processing to exclude “mailto:” types.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://connect.microsoft.com/VisualStudio/feedback/details/475897/uri-trycreate-throws-uriformatexception&quot;&gt;http://connect.microsoft.com/VisualStudio/feedback/details/475897/uri-trycreate-throws-uriformatexception&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Jan 2013 00:00:00 +0000</pubDate>
+        <link>http://www.alt-pgdn.com/.net/2013/01/06/bad-uri.trycreate.html</link>
+        <guid isPermaLink="true">http://www.alt-pgdn.com/.net/2013/01/06/bad-uri.trycreate.html</guid>
+        
+        
+        <category>.net</category>
+        
+      </item>
+    
+  </channel>
+</rss>
