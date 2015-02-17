@@ -4,11 +4,30 @@
     <title>Alt-PgDn</title>
     <description>Alt-PgDn is the Resharper keyboard shortcut for &quot;Proceed to next issue&quot;. This is a collection of programming tidbits, deployment issues and other techy bits and pieces I find interesting.
 </description>
-    <link>http://www.alt-pgdn.com/</link>
-    <atom:link href="http://www.alt-pgdn.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 27 Jan 2015 16:38:48 +0000</pubDate>
-    <lastBuildDate>Tue, 27 Jan 2015 16:38:48 +0000</lastBuildDate>
+    <link>http://staging.alt-pgdn.com/</link>
+    <atom:link href="http://staging.alt-pgdn.com/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 17 Feb 2015 14:45:58 +0000</pubDate>
+    <lastBuildDate>Tue, 17 Feb 2015 14:45:58 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>JS Snippet - Endswith</title>
+        <description>&lt;p&gt;From: &lt;a href=&quot;http://stackoverflow.com/questions/280634/endswith-in-javascript&quot;&gt;http://stackoverflow.com/questions/280634/endswith-in-javascript&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;   
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+&lt;/code&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 Feb 2015 00:00:00 +0000</pubDate>
+        <link>http://staging.alt-pgdn.com/js/2015/02/17/js-endswith.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/js/2015/02/17/js-endswith.html</guid>
+        
+        
+        <category>js</category>
+        
+      </item>
     
       <item>
         <title>Enabling Travis-CI build on Github-Pages site</title>
@@ -34,8 +53,8 @@
 &lt;p&gt;… Wait for the build failure email telling you about the broken links on your sites… :-D&lt;/p&gt;
 </description>
         <pubDate>Tue, 28 Oct 2014 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</guid>
+        <link>http://staging.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/build/2014/10/28/enable-travis-ci-build.html</guid>
         
         
         <category>build</category>
@@ -55,8 +74,8 @@ Local IIS will complain!&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.troyhunt.com/2012/02/shhh-dont-let-your-response-headers.html&quot;&gt;Response headers via @troyhunt&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</guid>
+        <link>http://staging.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/azure/2014/09/05/remove-azure-server-header.html</guid>
         
         
         <category>azure</category>
@@ -81,8 +100,8 @@ The hang was accompanied by an error message in the Application event log: “Fa
 &lt;p&gt;&lt;a href=&quot;http://documentation.red-gate.com/display/APP8/IIS+stops+working+after+profiling+web+applications&quot; title=&quot;IIS stops working after profiling web applications - redgate&quot;&gt;http://documentation.red-gate.com/display/APP8/IIS+stops+working+after+profiling+web+applications&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 05 Sep 2014 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</guid>
+        <link>http://staging.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/iis/2014/09/05/fixing-iis-hangs-caused-by-ants.html</guid>
         
         
         <category>iis</category>
@@ -109,8 +128,8 @@ The hang was accompanied by an error message in the Application event log: “Fa
 
 </description>
         <pubDate>Fri, 04 Apr 2014 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</guid>
+        <link>http://staging.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/build/2014/04/04/zip-files-in-msbuild.html</guid>
         
         
         <category>build</category>
@@ -177,8 +196,8 @@ bundle install ```
 
 </description>
         <pubDate>Sun, 05 Jan 2014 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</guid>
+        <link>http://staging.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/blog/2014/01/05/configuring-octopress-builds.html</guid>
         
         
         <category>blog</category>
@@ -195,8 +214,8 @@ bundle install ```
 
 </description>
         <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</guid>
+        <link>http://staging.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/build/2013/12/12/team-build-set-version.html</guid>
         
         
         <category>build</category>
@@ -211,8 +230,8 @@ bundle install ```
 
 </description>
         <pubDate>Wed, 07 Aug 2013 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/2013/08/07/sql-server-aliases.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/2013/08/07/sql-server-aliases.html</guid>
+        <link>http://staging.alt-pgdn.com/2013/08/07/sql-server-aliases.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/2013/08/07/sql-server-aliases.html</guid>
         
         
       </item>
@@ -255,8 +274,8 @@ The theme files (theme.css, mossextension.css and all the associated images) are
 &lt;p&gt;&lt;strong&gt;Next post: How to fix your themes!&lt;/strong&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</guid>
+        <link>http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</guid>
         
         
         <category>sharepoint</category>
@@ -310,32 +329,11 @@ Eventually we determined that the accounts that were not being resolved were all
 &lt;p&gt;Removing and adding the service account in the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc262617%28v=office.12%29.aspx&quot;&gt;Policy for Web Application page&lt;/a&gt; seemed like a bit of a clutching at straws tactic, but after I’d restarted the crawl service everything sprang into life.&lt;/p&gt;
 </description>
         <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</guid>
+        <link>http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</guid>
         
         
         <category>sharepoint</category>
-        
-      </item>
-    
-      <item>
-        <title>Uri.TryCreate Is Not Reliable on .NET 3.5</title>
-        <description>&lt;p&gt;I ran into this issue while running through a load of SharePoint pages extracting URLs for a migration project:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/2814951/system-uriformatexception-invalid-uri-the-hostname-could-not-be-parsed&quot;&gt;http://stackoverflow.com/questions/2814951/system-uriformatexception-invalid-uri-the-hostname-could-not-be-parsed&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Essentially, you cannot just use Uri.TryCreate to 100% determine whether a supplied string is a valid Uri.&lt;/p&gt;
-
-&lt;p&gt;In my case, I was able to do some simple pre-processing to exclude “mailto:” types.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://connect.microsoft.com/VisualStudio/feedback/details/475897/uri-trycreate-throws-uriformatexception&quot;&gt;http://connect.microsoft.com/VisualStudio/feedback/details/475897/uri-trycreate-throws-uriformatexception&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 06 Jan 2013 00:00:00 +0000</pubDate>
-        <link>http://www.alt-pgdn.com/.net/2013/01/06/bad-uri.trycreate.html</link>
-        <guid isPermaLink="true">http://www.alt-pgdn.com/.net/2013/01/06/bad-uri.trycreate.html</guid>
-        
-        
-        <category>.net</category>
         
       </item>
     

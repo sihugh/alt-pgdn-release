@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='//static.goat99.com/alt-pgdn/images/favicon.ico' rel='shortcut icon' />
-    <title>Tools</title>
-    <meta name="description" content="Developer stuff around .NET, JavaScript, Ruby, SharePoint, Azure, MSBuild, PowerShell and other things...">
+    <title>JS Snippet - Endswith</title>
+    <meta name="description" content="Snippet for string ends with">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
     <link rel="stylesheet" href="/css/foundation.min.css">
     <link rel="stylesheet" href="/css/override.css">
-    <link rel="canonical" href="http://staging.alt-pgdn.com/tools/">
+    <link rel="canonical" href="http://staging.alt-pgdn.com/js/2015/02/17/js-endswith.html">
 </head>
 
   <body class="body">
@@ -68,60 +68,17 @@
       <div class="large-12 columns">
         <div class="post">
   <header class="post-header">
-    <h1 class="post-title">Tools</h1>
+    <h1 class="post-title">JS Snippet - Endswith</h1>
+    <p class="post-meta">Feb 17, 2015</p>
   </header>
   <article class="post-content">
-    <h1 id="get-software">Get Software</h1>
+    <p>From: <a href="http://stackoverflow.com/questions/280634/endswith-in-javascript">http://stackoverflow.com/questions/280634/endswith-in-javascript</a></p>
 
-<ul>
-  <li>Chocolatey
-    <ul>
-      <li>iex ((new-object net.webclient).DownloadString(‘https://chocolatey.org/install.ps1’))</li>
-      <li>https://chocolatey.org</li>
-    </ul>
-  </li>
-  <li>My paving script
-    <ul>
-      <li>ie ((new-object net.webclient).DownloadString(‘https://raw.githubusercontent.com/sihugh/ScriptsAndStuff/master/DevMachineInstall/devApps.ps1’))</li>
-      <li><a href="https://github.com/sihugh/ScriptsAndStuff/blob/master/DevMachineInstall/devApps.ps1" title="My paving script">https://github.com/sihugh/ScriptsAndStuff/blob/master/DevMachineInstall/devApps.ps1</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="packaging">Packaging</h1>
-
-<ul>
-  <li>uncss
-    <ul>
-      <li>npm install grunt-uncss –save-dev</li>
-      <li><a href="https://github.com/addyosmani/grunt-uncss" title="Grunt-Uncss on Github">https://github.com/addyosmani/grunt-uncss</a></li>
-    </ul>
-  </li>
-  <li>processhtml
-    <ul>
-      <li>npm install grunt-processhtml –save-dev</li>
-      <li><a href="https://github.com/dciccale/grunt-processhtml" title="Grunt-ProcessHTML on Github">https://github.com/dciccale/grunt-processhtml</a></li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="testing">Testing</h1>
-
-<ul>
-  <li>PhantomJS
-    <ul>
-      <li><a href="http://phantomjs.org/download.html" title="PhantomJS download">http://phantomjs.org/download.html</a></li>
-      <li>cinst PhantomJS</li>
-    </ul>
-  </li>
-  <li>wraith
-    <ul>
-      <li>npm install wraith</li>
-      <li><a href="http://github.com/BBC-News/wraith" title="Wraith on Github">http://github.com/BBC-News/wraith</a>  </li>
-    </ul>
-  </li>
-</ul>
-
+<p><code>   
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+</code></p>
 
   </article>
 </div>
