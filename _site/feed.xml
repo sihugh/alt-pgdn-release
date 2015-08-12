@@ -6,9 +6,145 @@
 </description>
     <link>http://staging.alt-pgdn.com/</link>
     <atom:link href="http://staging.alt-pgdn.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 17 Feb 2015 14:45:58 +0000</pubDate>
-    <lastBuildDate>Tue, 17 Feb 2015 14:45:58 +0000</lastBuildDate>
+    <pubDate>Wed, 12 Aug 2015 16:51:36 +0000</pubDate>
+    <lastBuildDate>Wed, 12 Aug 2015 16:51:36 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>Client side caching and blob caching</title>
+        <description>&lt;h2 id=&quot;key-bits&quot;&gt;Key Bits&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Cache on client side to take load off database, web front ends and networks.&lt;/li&gt;
+  &lt;li&gt;The trade-off is that content may no longer be up to date.&lt;/li&gt;
+  &lt;li&gt;Published pages are cached for 3 minutes in Browse and not cached in Auth&lt;/li&gt;
+  &lt;li&gt;Content in “_layouts” is cached for 365 days&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Easy to update source files in Dev!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Not subject to Blob Cache&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Some content in libraries is cached for 1 day&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;A pain to update source files in Dev!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Subject to Blob Cache&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cache-control-header&quot;&gt;Cache-Control Header&lt;/h2&gt;
+
+&lt;p&gt;The Cache-Control header has two elements to it:
+ - public / private
+ -  - This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
+ - max-age=(a time in seconds)
+ -  - How long the end client should store and use this cached version for.&lt;/p&gt;
+
+&lt;h2 id=&quot;pages-behaviour&quot;&gt;Pages Behaviour&lt;/h2&gt;
+
+&lt;p&gt;Pages contain most of the information (i.e. the text) that the rendered result displays.  When an author is modifying the page, they must see the “real” version of the content.  We are more able to cache content for consumers.&lt;/p&gt;
+
+&lt;p&gt;Pages are also the things that all the other assets are linked to (e.g. images, scripts, styles etc.).&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Page caching is configured in “/_layouts/sitecachesettings.aspx”&lt;/li&gt;
+  &lt;li&gt;Browse is set to cache for 3 minutes (I think we could be more aggressive with this).&lt;/li&gt;
+  &lt;li&gt;Browse is set by default to “ServerAndPrivate” (results in the same as “private”).  We should set this to “public”!&lt;/li&gt;
+  &lt;li&gt;Auth is set to not cache (which makes sense)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;layouts-behaviour&quot;&gt;Layouts Behaviour&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The cache expiration is configured on the virtual directory in IIS and is set to 365 days.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Uses the following header “Cache-Control: max-age=31536000”&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Content is stored solely on the file system&lt;/li&gt;
+  &lt;li&gt;This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;libraries-behaviour&quot;&gt;Libraries Behaviour&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Does not cache by default&lt;/li&gt;
+  &lt;li&gt;“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;We could configure it to cache more file types than we do… e.g. all image types&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;This can have some weird results ( http://www.sharepointnutsandbolts.com/2009/05/optimization-blob-caching-and-http-304s.html )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;custom-pages&quot;&gt;Custom Pages&lt;/h2&gt;
+
+&lt;p&gt;You can set your own headers, for which you’ll need to determine caching relevance.  For example, “alerts” are cached for 2 minutes client side.&lt;/p&gt;
+
+&lt;h2 id=&quot;useful-links&quot;&gt;Useful Links&lt;/h2&gt;
+
+&lt;p&gt;http://madskristensen.net/post/cache-busting-in-aspnet (Inspiration for my Fingerprint.cs below)&lt;/p&gt;
+
+&lt;p&gt;http://www.sharepointnutsandbolts.com/2009/06/my-checklist-for-optimizing-sharepoint.html&lt;/p&gt;
+
+&lt;p&gt;https://technet.microsoft.com/en-us/library/cc770229.aspx#BLOB (Blob cache settings)&lt;/p&gt;
+
+&lt;script src=&quot;https://gist.github.com/020c160a6e02318aa934.js&quot;&gt; &lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
+        <link>http://staging.alt-pgdn.com/performance/2015/05/13/client-side-caching.html</link>
+        <guid isPermaLink="true">http://staging.alt-pgdn.com/performance/2015/05/13/client-side-caching.html</guid>
+        
+        
+        <category>performance</category>
+        
+      </item>
     
       <item>
         <title>JS Snippet - Endswith</title>
@@ -208,7 +344,7 @@ bundle install ```
         <title>Setting Assembly File Version using MSBuild Extensions</title>
         <description>&lt;p&gt;Excellent write up on this - used it and it worked:&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/&quot;&gt;http://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;https://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/&lt;/p&gt;
 
 &lt;p&gt;MSBuild Extensions: &lt;a href=&quot;http://msbuildextensionpack.codeplex.com/releases/view/105659&quot;&gt;http://msbuildextensionpack.codeplex.com/releases/view/105659&lt;/a&gt;&lt;/p&gt;
 
@@ -242,7 +378,7 @@ bundle install ```
 
 &lt;!-- more --&gt;
 
-&lt;p&gt;I will cover the caching and updating points in another post (although the key elements behind this are covered in &lt;a href=&quot;http://www.heathersolomon.com/blog/archive/2008/01/30/SharePoint-2007-Design-Tip-Import-your-CSS-for-SharePoint-Themes.aspx&quot; title=&quot;Heather Solomon&#39;s post&quot;&gt;Heather Solomon’s post&lt;/a&gt;. This post flags up the issue of broken CSS one of the side effects of which is extra HTTP requests which will never be served.&lt;/p&gt;
+&lt;p&gt;I will cover the caching and updating points in another post (although the key elements behind this are covered in &lt;a href=&quot;http://blog.sharepointexperience.com/2008/01/sharepoint-2007-design-tip-import-your-css-for-sharepoint-themes/&quot; title=&quot;Heather Solomon&#39;s post&quot;&gt;Heather Solomon’s post&lt;/a&gt;. This post flags up the issue of broken CSS one of the side effects of which is extra HTTP requests which will never be served.&lt;/p&gt;
 
 &lt;p&gt;I’m going to cut to the chase and advise that you do not permit the out of the box themes to be used. (Not that anyone is still deploying new 2007 installations are they?) I’m going to pick on a few specific problems, but they are indicative of MOSS themes as a whole.&lt;/p&gt;
 
@@ -276,61 +412,6 @@ The theme files (theme.css, mossextension.css and all the associated images) are
         <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
         <link>http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</link>
         <guid isPermaLink="true">http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-themes.html</guid>
-        
-        
-        <category>sharepoint</category>
-        
-      </item>
-    
-      <item>
-        <title>SharePoint Peoplepicker Angst</title>
-        <description>&lt;p&gt;I’ve recently been trying to run down some issues around service accounts gaining access to site collections in one of our web apps.  We’ve set the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263328%28v=office.12%29.aspx&quot;&gt;siteuseraccountdirectorypath&lt;/a&gt; and that is working as expected and users under that OU are resolved correctly.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, some (but not all) of the service accounts that reside in the OUs specified in the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;peoplepicker-serviceaccountdirectorypaths&lt;/a&gt; property were getting the ‘The user does not exist or is not unique’ error when trying to access the site and could not resolve via the people picker in the site.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2 id=&quot;tldr--what-fixed-the-problem&quot;&gt;TL;DR – What fixed the problem?&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Make sure the service account directory paths property is correct&lt;/li&gt;
-  &lt;li&gt;Make sure the service account is a farm administrator.
-    &lt;ul&gt;
-      &lt;li&gt;Make sure there are no ‘Deny’ policies in the Policy for Web Application page interfering with this account.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;If the user still does not resolve in the people picker on the site, remove it from any web app policies it is defined in and re-add it.&lt;/strong&gt; (This was our issue)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Get the service account to try to access the site again.
-    &lt;ul&gt;
-      &lt;li&gt;Ours was a search indexing service account so we restarted the crawler.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;The user should now be able to get access (and should now resolve in the people picker).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;investigation&quot;&gt;Investigation&lt;/h2&gt;
-&lt;p&gt;The problem was that the service account did not have access, but as we could not log in as the account to try things, we were trying to fix the “would not resolve in people picker” issue first to see if it was the same issue.&lt;/p&gt;
-
-&lt;p&gt;Using &lt;a href=&quot;http://www.microsoft.com/en-us/download/details.aspx?id=4865&quot;&gt;NetMon&lt;/a&gt; I could see that People picker only does an LDAP query under the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263328%28v=office.12%29.aspx&quot;&gt;siteuseraccountdirectorypath&lt;/a&gt; base OU.  This means that the issue was not to do with the connection to AD from the site collection as it was never actually querying AD at a location where service accounts were.&lt;/p&gt;
-
-&lt;p&gt;The &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;Technet reference&lt;/a&gt; does indicate that SharePoint has to know about the account already (emphasis mine):&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Enables a &lt;strong&gt;farm administrator&lt;/strong&gt; to manage the site collection that has a specific organizational unit (OU) setting as defined in the Setsiteuseraccountdirectorypath setting&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The service accounts that appeared in the people picker selector were present in the User Information List in the root web of the site collection.&lt;/p&gt;
-
-&lt;p&gt;I set up a test user with no access to the site and even though he got the Access Denied page when browsing to the site, the user account was added to the User Information List at first browse.  This implied that it was something different than just lack of permissions.
-Eventually we determined that the accounts that were not being resolved were all in an OU which had recently been added to the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc263012%28v=office.12%29.aspx&quot;&gt;peoplepicker-serviceaccountdirectorypaths&lt;/a&gt; property.  They had been in the web application policies list since the web app had been set up, but this had obviously not been working.&lt;/p&gt;
-
-&lt;p&gt;Removing and adding the service account in the &lt;a href=&quot;http://technet.microsoft.com/en-us/library/cc262617%28v=office.12%29.aspx&quot;&gt;Policy for Web Application page&lt;/a&gt; seemed like a bit of a clutching at straws tactic, but after I’d restarted the crawl service everything sprang into life.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 01 Aug 2013 00:00:00 +0000</pubDate>
-        <link>http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</link>
-        <guid isPermaLink="true">http://staging.alt-pgdn.com/sharepoint/2013/08/01/sharepoint-peoplepicker.html</guid>
         
         
         <category>sharepoint</category>

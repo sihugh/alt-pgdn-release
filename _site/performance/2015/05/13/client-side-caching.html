@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='//static.goat99.com/alt-pgdn/images/favicon.ico' rel='shortcut icon' />
-    <title>Setting Assembly File Version using MSBuild Extensions</title>
-    <meta name="description" content="How to set a solution wide assembly version in MSBuild">
+    <title>Client side caching and blob caching</title>
+    <meta name="description" content="Handover summary of caching strategies">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
     <link rel="stylesheet" href="/css/foundation.min.css">
     <link rel="stylesheet" href="/css/override.css">
-    <link rel="canonical" href="http://staging.alt-pgdn.com/build/2013/12/12/team-build-set-version.html">
+    <link rel="canonical" href="http://staging.alt-pgdn.com/performance/2015/05/13/client-side-caching.html">
 </head>
 
   <body class="body">
@@ -68,15 +68,133 @@
       <div class="large-12 columns">
         <div class="post">
   <header class="post-header">
-    <h1 class="post-title">Setting Assembly File Version using MSBuild Extensions</h1>
-    <p class="post-meta">Dec 12, 2013</p>
+    <h1 class="post-title">Client side caching and blob caching</h1>
+    <p class="post-meta">May 13, 2015</p>
   </header>
   <article class="post-content">
-    <p>Excellent write up on this - used it and it worked:</p>
+    <h2 id="key-bits">Key Bits</h2>
+<ul>
+  <li>Cache on client side to take load off database, web front ends and networks.</li>
+  <li>The trade-off is that content may no longer be up to date.</li>
+  <li>Published pages are cached for 3 minutes in Browse and not cached in Auth</li>
+  <li>Content in “_layouts” is cached for 365 days</li>
+  <li>
+    <ul>
+      <li>Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Easy to update source files in Dev!</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Not subject to Blob Cache</li>
+    </ul>
+  </li>
+  <li>Some content in libraries is cached for 1 day</li>
+  <li>
+    <ul>
+      <li>Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>A pain to update source files in Dev!</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>Subject to Blob Cache</li>
+    </ul>
+  </li>
+</ul>
 
-<p>https://mikefourie.wordpress.com/2009/11/07/versioning-code-in-tfs-revised/</p>
+<h2 id="cache-control-header">Cache-Control Header</h2>
 
-<p>MSBuild Extensions: <a href="http://msbuildextensionpack.codeplex.com/releases/view/105659">http://msbuildextensionpack.codeplex.com/releases/view/105659</a></p>
+<p>The Cache-Control header has two elements to it:
+ - public / private
+ -  - This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
+ - max-age=(a time in seconds)
+ -  - How long the end client should store and use this cached version for.</p>
+
+<h2 id="pages-behaviour">Pages Behaviour</h2>
+
+<p>Pages contain most of the information (i.e. the text) that the rendered result displays.  When an author is modifying the page, they must see the “real” version of the content.  We are more able to cache content for consumers.</p>
+
+<p>Pages are also the things that all the other assets are linked to (e.g. images, scripts, styles etc.).</p>
+
+<ul>
+  <li>Page caching is configured in “/_layouts/sitecachesettings.aspx”</li>
+  <li>Browse is set to cache for 3 minutes (I think we could be more aggressive with this).</li>
+  <li>Browse is set by default to “ServerAndPrivate” (results in the same as “private”).  We should set this to “public”!</li>
+  <li>Auth is set to not cache (which makes sense)</li>
+</ul>
+
+<h2 id="layouts-behaviour">Layouts Behaviour</h2>
+
+<ul>
+  <li>The cache expiration is configured on the virtual directory in IIS and is set to 365 days.</li>
+  <li>
+    <ul>
+      <li>Uses the following header “Cache-Control: max-age=31536000”</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server</li>
+    </ul>
+  </li>
+  <li>Content is stored solely on the file system</li>
+  <li>This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)</li>
+  <li>
+    <ul>
+      <li>My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="libraries-behaviour">Libraries Behaviour</h2>
+<ul>
+  <li>Does not cache by default</li>
+  <li>“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).</li>
+  <li>
+    <ul>
+      <li>Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. </li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)</li>
+    </ul>
+  </li>
+  <li>
+    <ul>
+      <li>We could configure it to cache more file types than we do… e.g. all image types</li>
+    </ul>
+  </li>
+  <li>This can have some weird results ( http://www.sharepointnutsandbolts.com/2009/05/optimization-blob-caching-and-http-304s.html )</li>
+</ul>
+
+<h2 id="custom-pages">Custom Pages</h2>
+
+<p>You can set your own headers, for which you’ll need to determine caching relevance.  For example, “alerts” are cached for 2 minutes client side.</p>
+
+<h2 id="useful-links">Useful Links</h2>
+
+<p>http://madskristensen.net/post/cache-busting-in-aspnet (Inspiration for my Fingerprint.cs below)</p>
+
+<p>http://www.sharepointnutsandbolts.com/2009/06/my-checklist-for-optimizing-sharepoint.html</p>
+
+<p>https://technet.microsoft.com/en-us/library/cc770229.aspx#BLOB (Blob cache settings)</p>
+
+<script src="https://gist.github.com/020c160a6e02318aa934.js"> </script>
 
 
   </article>
