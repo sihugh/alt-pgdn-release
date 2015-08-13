@@ -77,24 +77,24 @@
   <li>Cache on client side to take load off database, web front ends and networks.</li>
   <li>The trade-off is that content may no longer be up to date.</li>
   <li>Published pages are cached for 3 minutes in Browse and not cached in Auth</li>
-  <li>Content in “_layouts” is cached for 365 days</li>
-  <li>Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)</li>
-  <li>Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.</li>
-  <li>Easy to update source files in Dev!</li>
-  <li>Not subject to Blob Cache</li>
-  <li>Some content in libraries is cached for 1 day</li>
-  <li>Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)</li>
-  <li>A pain to update source files in Dev!</li>
-  <li>Subject to Blob Cache</li>
+  <li>Content in “_layouts” is cached for 365 days
+  – Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)
+  – Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.
+  – Easy to update source files in Dev!
+  – Not subject to Blob Cache</li>
+  <li>Some content in libraries is cached for 1 day
+  – Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)
+  – A pain to update source files in Dev!
+  – Subject to Blob Cache</li>
 </ul>
 
 <h2 id="cache-control-header">Cache-Control Header</h2>
 
 <p>The Cache-Control header has two elements to it:
  - public / private
-  - This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
+  – This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
  - max-age=(a time in seconds)
-  - How long the end client should store and use this cached version for.</p>
+  – How long the end client should store and use this cached version for.</p>
 
 <h2 id="pages-behaviour">Pages Behaviour</h2>
 
@@ -112,21 +112,21 @@
 <h2 id="layouts-behaviour">Layouts Behaviour</h2>
 
 <ul>
-  <li>The cache expiration is configured on the virtual directory in IIS and is set to 365 days.</li>
-  <li>Uses the following header “Cache-Control: max-age=31536000”</li>
-  <li>This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server</li>
+  <li>The cache expiration is configured on the virtual directory in IIS and is set to 365 days.
+  – Uses the following header “Cache-Control: max-age=31536000”
+  – This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server</li>
   <li>Content is stored solely on the file system</li>
-  <li>This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)</li>
-  <li>My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).</li>
+  <li>This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)
+  – My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).</li>
 </ul>
 
 <h2 id="libraries-behaviour">Libraries Behaviour</h2>
 <ul>
   <li>Does not cache by default</li>
-  <li>“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).</li>
-  <li>Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. </li>
-  <li>It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)</li>
-  <li>We could configure it to cache more file types than we do… e.g. all image types</li>
+  <li>“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).
+  – Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. 
+  – It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)
+  – We could configure it to cache more file types than we do… e.g. all image types</li>
   <li>This can have some weird results ( http://www.sharepointnutsandbolts.com/2009/05/optimization-blob-caching-and-http-304s.html )</li>
 </ul>
 

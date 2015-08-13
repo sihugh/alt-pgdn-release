@@ -6,8 +6,8 @@
 </description>
     <link>http://staging.alt-pgdn.com/</link>
     <atom:link href="http://staging.alt-pgdn.com/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 12 Aug 2015 18:31:07 +0000</pubDate>
-    <lastBuildDate>Wed, 12 Aug 2015 18:31:07 +0000</lastBuildDate>
+    <pubDate>Thu, 13 Aug 2015 10:37:19 +0000</pubDate>
+    <lastBuildDate>Thu, 13 Aug 2015 10:37:19 +0000</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -17,24 +17,24 @@
   &lt;li&gt;Cache on client side to take load off database, web front ends and networks.&lt;/li&gt;
   &lt;li&gt;The trade-off is that content may no longer be up to date.&lt;/li&gt;
   &lt;li&gt;Published pages are cached for 3 minutes in Browse and not cached in Auth&lt;/li&gt;
-  &lt;li&gt;Content in “_layouts” is cached for 365 days&lt;/li&gt;
-  &lt;li&gt;Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)&lt;/li&gt;
-  &lt;li&gt;Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.&lt;/li&gt;
-  &lt;li&gt;Easy to update source files in Dev!&lt;/li&gt;
-  &lt;li&gt;Not subject to Blob Cache&lt;/li&gt;
-  &lt;li&gt;Some content in libraries is cached for 1 day&lt;/li&gt;
-  &lt;li&gt;Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)&lt;/li&gt;
-  &lt;li&gt;A pain to update source files in Dev!&lt;/li&gt;
-  &lt;li&gt;Subject to Blob Cache&lt;/li&gt;
+  &lt;li&gt;Content in “_layouts” is cached for 365 days
+  – Use this for content that will only change at release intervals (due to the fact that it is stored separately on each web front end so is a pain to update)
+  – Use the “Fingerprint.Tag()” method in the “Utility” project to ensure that the newest versions of layouts files are served.
+  – Easy to update source files in Dev!
+  – Not subject to Blob Cache&lt;/li&gt;
+  &lt;li&gt;Some content in libraries is cached for 1 day
+  – Use this for content that you may need to update between releases (due to the fact that you only have to modify it in one place)
+  – A pain to update source files in Dev!
+  – Subject to Blob Cache&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;cache-control-header&quot;&gt;Cache-Control Header&lt;/h2&gt;
 
 &lt;p&gt;The Cache-Control header has two elements to it:
  - public / private
-  - This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
+  – This states whether or not proxy servers between the web server and the client should serve this content to different users requesting the same resource.
  - max-age=(a time in seconds)
-  - How long the end client should store and use this cached version for.&lt;/p&gt;
+  – How long the end client should store and use this cached version for.&lt;/p&gt;
 
 &lt;h2 id=&quot;pages-behaviour&quot;&gt;Pages Behaviour&lt;/h2&gt;
 
@@ -52,21 +52,21 @@
 &lt;h2 id=&quot;layouts-behaviour&quot;&gt;Layouts Behaviour&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;The cache expiration is configured on the virtual directory in IIS and is set to 365 days.&lt;/li&gt;
-  &lt;li&gt;Uses the following header “Cache-Control: max-age=31536000”&lt;/li&gt;
-  &lt;li&gt;This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server&lt;/li&gt;
+  &lt;li&gt;The cache expiration is configured on the virtual directory in IIS and is set to 365 days.
+  – Uses the following header “Cache-Control: max-age=31536000”
+  – This is “public” by default which means that proxies can serve the same resource to multiple people without hitting the server&lt;/li&gt;
   &lt;li&gt;Content is stored solely on the file system&lt;/li&gt;
-  &lt;li&gt;This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)&lt;/li&gt;
-  &lt;li&gt;My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).&lt;/li&gt;
+  &lt;li&gt;This may be over-ridden by using a “cache-busting” version tag when you link to assets (i.e. in the master page or page layouts)
+  – My version of this is in Fingerprint.cs in the Utility project or in this Gist (also linked below).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;libraries-behaviour&quot;&gt;Libraries Behaviour&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;Does not cache by default&lt;/li&gt;
-  &lt;li&gt;“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).&lt;/li&gt;
-  &lt;li&gt;Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. &lt;/li&gt;
-  &lt;li&gt;It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)&lt;/li&gt;
-  &lt;li&gt;We could configure it to cache more file types than we do… e.g. all image types&lt;/li&gt;
+  &lt;li&gt;“Blobcache” is enabled in web.config which caches gif, jpg, png, css, js and xml files which come from document libraries for 1 day (86400 seconds).
+  – Blob cache is a designated area on each front end where SharePoint may store content which matches the blob cache configuration. 
+  – It saves round trips to the database, but requires “flushing” when we make updates.  (Use the site maintenance tool)
+  – We could configure it to cache more file types than we do… e.g. all image types&lt;/li&gt;
   &lt;li&gt;This can have some weird results ( http://www.sharepointnutsandbolts.com/2009/05/optimization-blob-caching-and-http-304s.html )&lt;/li&gt;
 &lt;/ul&gt;
 
